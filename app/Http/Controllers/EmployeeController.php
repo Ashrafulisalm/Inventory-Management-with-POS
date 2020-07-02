@@ -6,6 +6,7 @@ use App\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
+use Datatables;
 
 class EmployeeController extends Controller
 {
@@ -53,6 +54,16 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+                'name' => 'required|max:255',
+                'email' => 'required|unique:employees',
+                'phone' =>  'required|max:13',
+                'address' => 'required',
+                'salary'  => 'required',
+                'vacation' => 'required',
+                'n_id' => 'required'
+            ]);
+
        /* $img=$request->file('photo');
         $random = Str::random(10);
         $image_name = $random;
@@ -130,6 +141,7 @@ class EmployeeController extends Controller
     {
         Employee::find($id)->delete();
 
-        return response()->json(['success'=>'Employee deleted successfully.']);
+        $customer=Customer::all();
+        return response()->json($customer);
     }
 }

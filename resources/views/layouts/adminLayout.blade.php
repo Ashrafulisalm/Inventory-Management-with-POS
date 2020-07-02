@@ -36,7 +36,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{url('/home')}}">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-biohazard"></i>
         </div>
@@ -53,9 +53,21 @@
           <span>Employee</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="{{url('/home/employee')}}">
+        <a class="nav-link" href="{{url('/home/customer')}}">
           <i class="fas fa-fw fa-address-card"></i>
           <span>Customer</span></a>
+      </li>
+
+     <li class="nav-item active">
+          <a class="nav-link fas fa-fw fa-user-lock" href="{{ route('logout') }}"
+             onclick="event.preventDefault();
+                           document.getElementById('logout-form').submit();">
+              {{  __('Logout') }}
+          </a>
+
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              @csrf
+          </form>
       </li>
 
       <!-- Divider -->
@@ -310,7 +322,7 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <!-- Dropdown - User Information -->
@@ -435,6 +447,8 @@
   <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
   <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Employee Crud jQuery and Ajex -->
   <script type="text/javascript">
     $(function () {
 
@@ -467,7 +481,7 @@
                 {data: 'salary', name: 'salary' },
                 {data: 'city', name: 'city' },
                 {data: 'vacation', name: 'vacation' },
-                {data: 'photo', name: 'photo' },
+                //{data: 'photo', name: 'photo' },
                 {data: 'action', name: 'action', orderable: false, searchable: false},
             ]
         });
@@ -505,6 +519,25 @@
                 url: "{{ route('employees.store') }}"+'/'+employee_id,
                 success: function (data) {
                     table.draw();
+                },
+                error: function (data) {
+                    console.log('Error:', data);
+                }
+            });
+        });
+
+        $('body').on('click', '.deleteCustomer', function () {
+
+            var customer_id = $(this).data("id");
+            confirm("Are You sure want to delete Customer!");
+
+            $.ajax({
+                type: "DELETE",
+                url: "{{ url('/customers') }}"+'/'+customer_id,
+                success: function (data) {
+                   // table.draw();
+                   url: "{{ url('/home/customer') }}"
+
                 },
                 error: function (data) {
                     console.log('Error:', data);

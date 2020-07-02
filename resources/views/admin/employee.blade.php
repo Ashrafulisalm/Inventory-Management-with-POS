@@ -8,6 +8,7 @@
 	            <div class="card">
 	                <div class="card-header">
 	                    Employee Details
+	                    <input type="hidden" id="employeeData" name="" value="true">
 	                    <!-- Button trigger modal -->
 	                    <a class="btn btn-success" style="float: right" href="javascript:void(0)" id="createEmployee"> Add Employee</a>
 
@@ -28,7 +29,7 @@
 	                            <th>Salary</th>
 	                            <th>Vacation</th>
 	                            <th>City</th>
-	                            <th>Photo</th>
+	                            <!-- <th>Photo</th> -->
 	                            <th width="280px">Action</th>
 	                        </tr>
 	                        </thead>
@@ -138,5 +139,7 @@
 	        </div>
 	    </div>
 	</div>
+
+
 
 @endsection

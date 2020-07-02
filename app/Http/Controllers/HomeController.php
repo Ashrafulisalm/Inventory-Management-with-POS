@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Customer;
 
 class HomeController extends Controller
 {
@@ -29,5 +30,10 @@ class HomeController extends Controller
     public function employee(){
 
         return view('admin.employee');
+    }
+
+    public function customer(){
+        $customer=Customer::all();
+        return view('admin.customer',compact('customer'));
     }
 }
