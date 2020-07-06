@@ -15,26 +15,7 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-        {
-            
-                        $data = Customer::all();
-                        return datatables()->of($data)
-                            ->addIndexColumn()
-                            ->addColumn('action', function($row){
-
-                                $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editCustomer">Edit</a>';
-
-                                $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-danger btn-sm deleteCustomer">Delete</a>';
-
-                                return $btn;
-                            })
-                            ->rawColumns(['action'])
-                            ->make(true);
-                    
-
-                    return view('admin.customer');
-        }
+    
 
         /**
          * Show the form for creating a new resource.
@@ -60,16 +41,21 @@ class CustomerController extends Controller
                     'address' => 'required',
                 ]);
 
-            /*$img=$request->file('photo');
+            if($request->file('photo')){
+            @unlink($request->oldphoto);
+            $img=$request->file('photo');
             $random = Str::random(10);
             $image_name = $random;
             $ext = strtolower($img->getClientOriginalExtension());
             $image_fname = $image_name. '.' . $ext;
             $upload_path = 'img/';
             $image_url = $upload_path . $image_fname;
-            $success = $img->move($upload_path,$image_fname);*/
+            $success = $img->move($upload_path,$image_fname);
+            } else {
+                $image_url=$request->oldphoto;
+            }
 
-            $customer = Customer::updateOrCreate(['id' => $request->customer_id],
+            $customer = Customer::updateOrCreate(['id' => $request->id],
                 [
                 'name' => $request->name,
                 'email' => $request->email,
@@ -81,7 +67,7 @@ class CustomerController extends Controller
                 'bank_name' => $request->bank_name,
                 'bank_branch' => $request->bank_branch,
                 'city' => $request->city,
-                //'photo'=>$image_url,
+                'photo'=>$image_url,
             ]);
 
 
@@ -120,23 +106,7 @@ class CustomerController extends Controller
          */
         public function update(Request $request, $id)
         {
-            $customer = Customer::update(['id' => $id],
-                [
-                'name' => $request->name,
-                'email' => $request->email,
-                'phone' => $request->phone,
-                'address' => $request->address,
-                'shop_name' => $request->shop_name,
-                'account_holder' => $request->account_holder,
-                'account_number' => $request->account_number,
-                'bank_name' => $request->bank_name,
-                'bank_branch' => $request->bank_branch,
-                'city' => $request->city,
-                //'photo'=>$image_url,
-            ]);
-
-
-            return redirect('/home/customer');
+            
         }
 
         /**
@@ -148,7 +118,7 @@ class CustomerController extends Controller
         public function destroy($id)
         {
             Customer::find($id)->delete();
-            return response()->json(['success'=>'Employee deleted successfully.']);
-            //return redirect('/home/customer');
+            return redirect()->back();
+            
         }
 }

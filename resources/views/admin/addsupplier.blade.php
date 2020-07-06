@@ -6,19 +6,19 @@
 	    <div class="row justify-content-center">
 	        <div class="col-md-12">
 	            <div class="card">
-	                <div class="card-header">Create New Customer</div>
+	                <div class="card-header">Create New Supplier</div>
 
 	                <div class="card-body">
 
 				        <div class="box-content">
-				            <form action="{{URL::to('/customers')}}" method="post" class="form-horizontal" enctype="multipart/form-data" >
+				            <form action="{{url('/suppliers/store')}}" method="post" class="form-horizontal" enctype="multipart/form-data" >
 				            	@method('POST')
 				                @csrf
 				                <fieldset>
 				                    <div class="form-group">
-				                    	<input type="hidden" name="id">
 				                        <label for="name" class="col-sm-2 control-label">Name</label>
 				                        <div class="col-md-8">
+				                        	<input type="hidden" name="id">
 				                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" value="" maxlength="50" required="">
 				                        </div>
 				                    </div>
@@ -46,9 +46,21 @@
 
 
 				                    <div class="form-group">
-				                        <label class="col-sm-2 control-label">Shop_Name</label>
+				                        <label class="col-sm-2 control-label">Type</label>
 				                        <div class="col-md-8">
-				                            <input type="text" class="form-control" id="shop_name" name="shop_name" placeholder="Enter Shop_Name" value="" maxlength="50" required="">
+				                            <select class="custom-select" id="type" name="type">
+				                                <option selected>Choose Type</option>
+				                                <option value="1">1.Distributor</option>
+				                                <option value="2">2.Wholeseller</option>
+				                                <option value="3">3.Brocure</option>
+				                              </select>
+				                        </div>
+				                    </div>
+
+				                    <div class="form-group">
+				                        <label class="col-sm-2 control-label">Shop</label>
+				                        <div class="col-md-8">
+				                            <input type="text" class="form-control" id="shop" name="shop" placeholder="Enter Shop" value="" maxlength="50" required="">
 				                        </div>
 				                    </div>
 

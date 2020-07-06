@@ -57,6 +57,11 @@
           <i class="fas fa-fw fa-address-card"></i>
           <span>Customer</span></a>
       </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{{url('/home/supplier')}}">
+          <i class="fas fa-fw fa-address-card"></i>
+          <span>Supplier</span></a>
+      </li>
 
      <li class="nav-item active">
           <a class="nav-link fas fa-fw fa-user-lock" href="{{ route('logout') }}"

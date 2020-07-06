@@ -16,6 +16,7 @@
   				                @csrf
   				                <fieldset>
   				                    <div class="form-group">
+                                <input type="hidden" name="id" value="{{$customer->id}}">
   				                        <label for="name" class="col-sm-2 control-label">Name</label>
   				                        <div class="col-md-8">
   				                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" value="{{$customer->name}}" maxlength="50" required="">
@@ -86,12 +87,13 @@
   				                        </div>
   				                    </div>
 
-  				                    <!-- <div class="form-group">
-  				                        <label class="col-sm-2 control-label">Photo</label>
-  				                        <div class="col-md-8">
-  				                            <input type="file" class="form-control" name="photo" required="">
-  				                        </div>
-  				                    </div> -->
+  				                    <div class="form-group">
+                                <label class="col-sm-2 control-label">Photo</label>
+                                <div class="col-md-8">
+                                  <input type="file" class="form-control" name="photo">
+                                    <input type="hidden" class="form-control" name="oldphoto" value="{{$customer->photo}}">Old Image-><img src="{{asset($customer->photo)}}" height="50" width="50">
+                                </div>
+                            </div>
 
   				                    <div class="form-actions">
   				                        <button type="submit" value="submit" class="btn btn-primary">Save</button>

@@ -21,6 +21,7 @@
                           <th scope="col">Ac_Holder</th>
                           <th scope="col">Ac_Number</th>
                           <th scope="col">Bank_name</th>
+                          <th>Image</th>
                           <th scope="col">Action</th>
                         </tr>
                       </thead>
@@ -35,6 +36,7 @@
                           <td>{{$row->account_holder}}</td>
                           <td>{{$row->account_number}}</td>
                           <td>{{$row->bank_name}}</td>
+                          <td><img src="{{asset($row->photo)}}" height="50" width="50"></td>
                           <td class="center">
                               <a class="fas fa-fw fa-edit" href="{{url('/customers/'.$row->id.'/edit')}}">
                               </a>

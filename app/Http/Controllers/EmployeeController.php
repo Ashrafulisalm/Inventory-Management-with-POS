@@ -23,9 +23,9 @@ class EmployeeController extends Controller
                         ->addIndexColumn()
                         ->addColumn('action', function($row){
 
-                            $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editEmployee">Edit</a>';
+                            $btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="fas fa-fw fa-edit editEmployee"></a>';
 
-                            $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-danger btn-sm deleteEmployee">Delete</a>';
+                            $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Delete" class="fas fa-fw fa-trash-alt deleteEmployee"></a>';
 
                             return $btn;
                         })
@@ -141,7 +141,6 @@ class EmployeeController extends Controller
     {
         Employee::find($id)->delete();
 
-        $customer=Customer::all();
-        return response()->json($customer);
+        return response()->json(['success'=>'Employee deleted successfully.']);
     }
 }
