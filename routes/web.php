@@ -48,3 +48,10 @@ Route::get('/product/catagory/create','CatagoryController@create');
 Route::post('/product/catagory/store','CatagoryController@store');
 Route::get('/product/catagory/edit/{id}','CatagoryController@edit');
 Route::any('/product/catagory/delete/{id}','CatagoryController@destroy');
+/*Crud*/
+Route::get('/products/index','ProductController@index');
+Route::get('/products/create','ProductController@create');
+Route::post('/products/store','ProductController@store');
+Route::get('/products/edit/{id}','ProductController@edit');
+Route::any('/products/delete/{id}','ProductController@destroy');
+Route::get('/products/view/{id}','ProductController@show');
