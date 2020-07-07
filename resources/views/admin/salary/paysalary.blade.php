@@ -31,7 +31,7 @@
                               <?php $ad=App\Advancedsalary::where('employee_id',$row->id)->where('month',date("F", strtotime("-1 months")))->first();
                                 if($ad){
                                ?>
-                              <td>{{$ad->advanced_salary}}
+                              <td>{{$ad->advanced_salary}}</td>
                               <?php }else { ?>
                                 <td></td>
                               <?php } ?>

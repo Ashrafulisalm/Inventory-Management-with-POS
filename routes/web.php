@@ -40,3 +40,11 @@ Route::get('/suppliers/edit/{id}','SupplierController@edit');
 Route::get('/salary/create','SalaryController@create');
 Route::post('/salary/store','SalaryController@store');
 Route::get('/salary/paysalary','SalaryController@paysalary');
+
+
+/*------Products-------*/
+Route::get('/product/catagory','CatagoryController@index');
+Route::get('/product/catagory/create','CatagoryController@create');
+Route::post('/product/catagory/store','CatagoryController@store');
+Route::get('/product/catagory/edit/{id}','CatagoryController@edit');
+Route::any('/product/catagory/delete/{id}','CatagoryController@destroy');
