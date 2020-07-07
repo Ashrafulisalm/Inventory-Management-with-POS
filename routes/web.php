@@ -23,6 +23,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home/employee','HomeController@employee')->name('employee');
 Route::get('/home/customer','HomeController@customer')->name('customer');
 Route::get('/home/supplier','HomeController@supplier')->name('supplier');
+Route::get('/home/salary','HomeController@salary')->name('salary');
+
+
 Route::resource('employees','EmployeeController');
 Route::resource('customers','CustomerController');
 
@@ -31,4 +34,9 @@ Route::get('/suppliers/create','SupplierController@create');
 Route::post('/suppliers/store','SupplierController@store');
 Route::any('/suppliers/delete/{id}','SupplierController@destroy');
 Route::get('/suppliers/edit/{id}','SupplierController@edit');
-Route::post('/suppliers/update/{id}','SupplierController@update');
+
+
+/*-----Salary-----*/
+Route::get('/salary/create','SalaryController@create');
+Route::post('/salary/store','SalaryController@store');
+Route::get('/salary/paysalary','SalaryController@paysalary');

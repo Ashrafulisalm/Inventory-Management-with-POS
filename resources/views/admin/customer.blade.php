@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Customer Details <a class="btn btn-success" style="float: right" href="{{url('/customers/create')}}" id="createEmployee"> Add Customer</a></div>
+                <div class="card-header">Customer Details <a class="btn btn-success" style="float: right" href="{{url('/customers/create')}}"> Add Customer</a></div>
 
 
                 <div class="card-body">

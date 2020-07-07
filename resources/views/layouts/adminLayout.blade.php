@@ -25,6 +25,7 @@
   <!-- toaster -->
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
 
+
 </head>
 
 <body id="page-top">
@@ -62,6 +63,20 @@
           <i class="fas fa-fw fa-address-card"></i>
           <span>Supplier</span></a>
       </li>
+      
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Salary(EMP)</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="{{url('/home/salary')}}">Advanced Salary</a>
+            <a class="collapse-item" href="{{url('/salary/paysalary')}}">Pay Salary</a>
+          </div>
+        </div>
+      </li>
+
 
      <li class="nav-item active">
           <a class="nav-link fas fa-fw fa-user-lock" href="{{ route('logout') }}"
@@ -452,6 +467,31 @@
   <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
   <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
+  <!-- ----toaster----- -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+  <script>
+      @if(Session::has('message'))
+      var type = "{{ Session::get('alert-type', 'info') }}";
+      switch(type){
+          case 'info':
+              toastr.info("{{ Session::get('message') }}");
+              break;
+
+          case 'warning':
+              toastr.warning("{{ Session::get('message') }}");
+              break;
+
+          case 'success':
+              toastr.success("{{ Session::get('message') }}");
+              break;
+
+          case 'error':
+              toastr.error("{{ Session::get('message') }}");
+              break;
+      }
+      @endif
+  </script>
 
   <!-- Employee Crud jQuery and Ajex -->
   <script type="text/javascript">

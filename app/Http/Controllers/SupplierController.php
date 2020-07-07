@@ -10,7 +10,10 @@ use Illuminate\Support\Facades\Redirect;
 
 class SupplierController extends Controller
 {
-    
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }    
 
     public function create(){
     	return view('admin.addsupplier');
@@ -60,6 +63,8 @@ class SupplierController extends Controller
         }
 
         public function destroy($id){
+            $pic=Supplier::find($id)->first();
+            @unlink($pic->photo);
         	Supplier::find($id)->delete();
         	return redirect()->back();
         }

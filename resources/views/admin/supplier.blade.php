@@ -10,7 +10,7 @@
 
 
                 <div class="card-body">
-                    <table class="table table-striped table-bordered">
+                    <table class="table table-striped table-bordered data-table">
                       <thead class="thead-dark">
                         <tr>
                           <th scope="col">Name</th>

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Customer;
 use App\Supplier;
+use App\Advancedsalary;
+use App\Employee;
+use DB;
 
 class HomeController extends Controller
 {
@@ -41,5 +44,14 @@ class HomeController extends Controller
     public function supplier(){
         $supplier=Supplier::all();
         return view('admin.supplier',compact('supplier'));
+    }
+
+    public function salary(){
+       /* $data=Advancedsalary::all();*/
+       $data=DB::table('advancedsalaries')
+           ->join('employees','advancedsalaries.employee_id','employees.id')
+           ->select('advancedsalaries.*','employees.name','employees.salary','employees.photo')
+           ->get(); 
+        return view('admin.advancedsalary',compact('data'));
     }
 }

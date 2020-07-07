@@ -15,6 +15,10 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     
 
         /**
@@ -117,6 +121,8 @@ class CustomerController extends Controller
          */
         public function destroy($id)
         {
+            $pic=Customer::where('id',$id)->first();
+            @unlink($pic->photo);
             Customer::find($id)->delete();
             return redirect()->back();
             

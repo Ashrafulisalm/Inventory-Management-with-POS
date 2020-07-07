@@ -15,6 +15,11 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         
@@ -54,24 +59,15 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-                'name' => 'required|max:255',
-                'email' => 'required|unique:employees',
-                'phone' =>  'required|max:13',
-                'address' => 'required',
-                'salary'  => 'required',
-                'vacation' => 'required',
-                'n_id' => 'required'
-            ]);
-
-       /* $img=$request->file('photo');
+        
+       $img=$request->file('photo');
         $random = Str::random(10);
         $image_name = $random;
         $ext = strtolower($img->getClientOriginalExtension());
         $image_fname = $image_name. '.' . $ext;
         $upload_path = 'img/';
         $image_url = $upload_path . $image_fname;
-        $success = $img->move($upload_path,$image_fname);*/
+        $success = $img->move($upload_path,$image_fname);
 
         $employee = Employee::updateOrCreate(['id' => $request->employee_id],
             [
@@ -84,7 +80,7 @@ class EmployeeController extends Controller
             'salary' => $request->salary,
             'city' => $request->city,
             'vacation' => $request->vacation,
-            //'photo'=>$image_url,
+            'photo'=>$image_url,
         ]);
 
             /*$notification=array(

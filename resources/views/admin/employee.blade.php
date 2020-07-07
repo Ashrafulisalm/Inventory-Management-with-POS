@@ -118,12 +118,12 @@
 	                                    </div>
 	                                </div>
 
-	                                <!-- <div class="form-group">
+	                                <div class="form-group">
 	                                    <label class="col-sm-2 control-label">Photo</label>
 	                                    <div class="col-md-12">
 	                                        <input type="file" class="form-control" id="photo" name="photo" placeholder="Enter Photo" value="" maxlength="50" required="">
 	                                    </div>
-	                                </div> -->
+	                                </div>
 
 	                                <div class="col-sm-offset-2 col-sm-10">
 	                                    <button type="submit" class="btn btn-primary" id="saveBtn" value="create">Save Employee
