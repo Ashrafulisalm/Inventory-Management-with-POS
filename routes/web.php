@@ -42,6 +42,16 @@ Route::post('/salary/store','SalaryController@store');
 Route::get('/salary/paysalary','SalaryController@paysalary');
 
 
+/*------Expense------*/
+Route::get('/expense/index','ExpenseController@index');
+Route::get('/expense/create','ExpenseController@create');
+Route::post('/expense/store','ExpenseController@store');
+Route::get('/expense/edit/{id}','ExpenseController@edit');
+Route::post('/expense/update/{id}','ExpenseController@update');
+Route::get('/expense/specific','ExpenseController@specific');
+Route::post('/expense/viewExpense','ExpenseController@viewExpense');
+
+
 /*------Products-------*/
 Route::get('/product/catagory','CatagoryController@index');
 Route::get('/product/catagory/create','CatagoryController@create');
@@ -55,3 +65,4 @@ Route::post('/products/store','ProductController@store');
 Route::get('/products/edit/{id}','ProductController@edit');
 Route::any('/products/delete/{id}','ProductController@destroy');
 Route::get('/products/view/{id}','ProductController@show');
+
