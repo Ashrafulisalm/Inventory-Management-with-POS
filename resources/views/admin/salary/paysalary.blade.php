@@ -17,6 +17,7 @@
                               <th scope="col">Photo</th>
                               <th scope="col">Salary</th>
                               <th scope="col">Advanced</th>
+                              <th scope="col">Pay Amount</th>
                               <th scope="col">Month</th>
                               <th scope="col">Action</th>
                               
@@ -29,12 +30,15 @@
                               <td><img src="{{asset($row->photo)}}" height="50" width="50"></td>
                               <td>{{$row->salary}}</td>
                               <?php $ad=App\Advancedsalary::where('employee_id',$row->id)->where('month',date("F", strtotime("-1 months")))->first();
+                                
                                 if($ad){
+                                  
                                ?>
                               <td>{{$ad->advanced_salary}}</td>
                               <?php }else { ?>
                                 <td></td>
                               <?php } ?>
+                              <td></td>
                               <td>{{date("F", strtotime("-1 months"))}}</td>
                               <td><a class="btn btn-primary" href="">Pay Salary</a>
                               
